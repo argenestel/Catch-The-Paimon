@@ -15,6 +15,23 @@ public class PlayerHitController : MonoBehaviour
 
     public delegate void OnLevelChange();
     public static event OnLevelChange OnLevelChangeEvent;
+
+
+    private void OnEnable()
+    {
+        SceneHandler.OnRestartEvent += RestartingGame;
+    }
+    private void OnDisable()
+    {
+        SceneHandler.OnRestartEvent -= RestartingGame;
+    }
+
+    private void RestartingGame()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("Spawn"));
+        _counter = 0;
+        Level = 0;
+    }
     void Start()
     {
         _counter = 0;

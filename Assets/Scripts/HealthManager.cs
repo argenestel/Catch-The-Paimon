@@ -7,7 +7,7 @@ using DentedPixel;
 public class HealthManager : MonoBehaviour
 {
 
-    public int _health = 3;
+    public int _health;
     public TextMeshProUGUI Lives;
 
     public delegate void OnGameOver();
@@ -19,12 +19,13 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Lives.text = _health.ToString();
+        Lives.text = "Lives: " + _health;
     }
 
     private void ChangeHealth()
     {
         _health--;
+        Lives.text = "Lives: " + _health;
         OnLiveChange();
     }
     void OnLiveChange()
